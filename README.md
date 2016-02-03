@@ -13,9 +13,8 @@ pip install git+https://github.com/cmac1000/lutugino.git#egg=lutugino
 ```
 
 Example usage:
-
 ```
-lutugino staging.env > staging_env.json
+lutugino --env_file=staging.env > staging_env.json
 cat docker-compose.yml | container-transform
                        | jq --file staging_env.json > task_def.json
 ```
