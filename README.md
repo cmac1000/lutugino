@@ -14,9 +14,16 @@ pip install git+https://github.com/cmac1000/lutugino.git#egg=lutugino
 
 Example usage:
 ```
-lutugino --env_file=staging.env > staging_env.json
-cat docker-compose.yml | container-transform
-                       | jq --file staging_env.json > task_def.json
+PATH_TO_ENV_FILTER = "./env.filter"
+
+echo "(.containerDefinitions[] | select(.name == \"app\") | .environment) |= " \
+  > $PATH_TO_ENV_FILTER
+
+lutugino --env_file=staging.env >> $PATH_TO_ENV_FILTER
+
+cat docker-compose.yml | container-transform \
+                       | jq --file $PATH_TO_ENV_FILTER \
+                       > task_def.json
 ```
 
 [container-transform]: https://github.com/micahhausler/container-transform  "container-transform"
