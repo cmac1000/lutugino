@@ -21,9 +21,7 @@ def cli(env_file):
     filtered = filter(lambda line: all(filter_func(line) for filter_func in filters), lines)
     split = [line.split('=') for line in filtered]
     env_dict = [{'name': pair[0], 'value': pair[1]} for pair in split]
-    json_string = json.dumps(env_dict)
-    # jq-compatible filter goes to stdout
-    print('.environment=' + json_string)
+    print(json.dumps(env_dict))
 
 if __name__ == '__main__':
     cli()

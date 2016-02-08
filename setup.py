@@ -21,7 +21,7 @@ setup(
     name="lutugino",
 
     # Version should comply with PEP440.
-    version="0.0.1dev1",
+    version="0.0.2dev1",
 
     # Describe the project.
     description="A tool for a very specific data transformation",
